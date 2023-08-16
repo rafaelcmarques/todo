@@ -39,5 +39,5 @@ export const Form = styled.View`
 
 export const Icon = styled(AntDesign).attrs(({theme}) => ({
   color: theme.COLORS.GRAY_100,
-  size: 14
+  size: 18
 }))``
