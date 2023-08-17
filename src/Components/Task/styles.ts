@@ -17,13 +17,13 @@ export const Container =  styled.View`
 
   margin-top: 15px;
 `
-export const Title = styled.Text`
-  color: ${({theme})=> theme.COLORS.GRAY_100};
-  font-size: ${({theme})=> theme.FONT_SIZE.LG}px;
+export const Title = styled.Text<{ isSelected: boolean }>`
+  color: ${({ isSelected ,theme}) => (isSelected ? theme.COLORS.GRAY_300 : theme.COLORS.GRAY_100)};
+  font-size: ${({ theme }) => theme.FONT_SIZE.LG}px;
   margin: 0 8px;
   flex: 1;
-
-`
+  text-decoration: ${({ isSelected }) => (isSelected ? "line-through" : "none")};
+`;
 
 export const Button = styled(TouchableOpacity)`
   width: 20px;

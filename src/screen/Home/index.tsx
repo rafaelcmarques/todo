@@ -1,38 +1,62 @@
-import { FlatList } from "react-native";
-import { useState } from "react";
+import { Alert, FlatList } from "react-native";
+import { useEffect, useState } from "react";
 import { useTheme } from "styled-components/native";
 
 import { Container, Input, Button, Form, Icon } from "./styles";
 import { EmptyList } from "../../Components/EmptyList";
 import { Header } from "../../Components/Header";
 import { Task } from "../../Components/Task";
+import { taskGetAll } from "../../storage/task/tasksGetAll";
+import { TaskDTO } from "../../storage/task/TaskDTO";
+import { taskCreate } from "../../storage/task/taskCreate";
+import { AppError } from "../../utils/AppError";
 
 
 export function Home(){
-  type TaskDTO = {
-    title: string;
-    isDone: boolean;
+  const [taskTitle, setTaskTitle] = useState('')
+  const [tasks, setTasks] = useState<TaskDTO[]>([])
+  const {COLORS} = useTheme();
+  
+  async function  fetchTasks(){
+    try {
+      const data = await taskGetAll()
+      setTasks(data)
+      
+    } catch (error) {
+      Alert.alert('Tarefas', 'Não foi possivel carregar as tarefas')
+    }
   }
 
+  async function handleCreateTask(taskTitle: string){
+    try {
+      await taskCreate({title: taskTitle, isDone:false})
+      setTaskTitle('')
+      fetchTasks()
+    } catch (error) {
+      if(error instanceof AppError){
+        Alert.alert('Tarefa', error.message)
+      }else{
+        Alert.alert('Tarefa', 'Não foi possivel cadastrar tarefa.')
+      }
+    }
+    
+  }
 
+  useEffect(()=> {
+    fetchTasks()
+  }, [])
 
-  const [tasks, setTasks] = useState<TaskDTO[]>([
-    { title:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste cumque explicabo ei',isDone: false},
-    { title:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste cumque explicabo ei',isDone: false},
-    { title:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste cumque explicabo ei',isDone: false},
-    { title:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste cumque explicabo ei',isDone: true},
-  ])
-
-  const {COLORS} = useTheme();
   return (
     <Container>
       <Header/>
       <Form>
         <Input 
-          placeholder="Adicionae uma nova tarefa"
+          placeholder="Adicione uma nova tarefa"
           placeholderTextColor= {COLORS.GRAY_300}
+          onChangeText={setTaskTitle}
+          value={taskTitle}
         />
-        <Button>
+        <Button onPress={()=> handleCreateTask(taskTitle)}>
           <Icon name={"pluscircleo"} />
         </Button>
       </Form>
@@ -41,7 +65,7 @@ export function Home(){
         data={tasks}
         keyExtractor={(item)=> item.title}
         renderItem={({item})=> 
-         <Task title={item.title}/>
+         <Task title={item.title} onTaskDeleted={fetchTasks}/>
         }
         ListEmptyComponent={ 
           <EmptyList
