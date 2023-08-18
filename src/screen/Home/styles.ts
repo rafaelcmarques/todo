@@ -6,7 +6,7 @@ import {AntDesign} from '@expo/vector-icons'
 
 export const Container = styled(SafeAreaView)`
   flex: 1;
-  background-color: ${({theme})=> theme.COLORS.GRAY_700};
+  background-color: ${({theme})=> theme.COLORS.GRAY_600};
   padding: 70px 24px;
 `
 
@@ -35,6 +35,7 @@ export const Button = styled(TouchableOpacity)`
 export const Form = styled.View`
   flex-direction: row;
   margin-top: 40px;
+  justify-content: space-between;
 `
 
 export const Icon = styled(AntDesign).attrs(({theme}) => ({

@@ -4,11 +4,13 @@ import {Feather} from "@expo/vector-icons"
 export const Container = styled.View`
   align-items: center;
   flex: 1;
+  margin-top: 20px;
 `
 export  const Title = styled.Text`
   font-family: ${({theme})=> theme.FONT_FAMILY.BOLD};
   font-size: ${({theme})=> theme.FONT_SIZE.MD}px;
   color: ${({theme})=> theme.COLORS.GRAY_300};
+  
 `
 
 export  const Subtitle = styled.Text`
