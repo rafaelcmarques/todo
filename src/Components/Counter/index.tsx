@@ -1,5 +1,5 @@
-import { Container, Title, Quantity,CounterColorProps } from "./styles";
-import { Text } from "react-native";
+import { Container, Title, Quantity,CounterColorProps,Text } from "./styles";
+
 
 type Props = {
   title: string,
@@ -15,7 +15,9 @@ export function Counter({title, type='PRIMARY', quantity}: Props){
       </Title>
 
       <Quantity>
-        {quantity}
+        <Text>
+          {quantity}
+        </Text>
       </Quantity>
     </Container>
   )

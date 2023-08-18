@@ -16,9 +16,10 @@ export const Title = styled.Text<CounterColorProps>`
 
 `
 
-export const Quantity = styled.Text`
-  text-align: center;
+export const Quantity = styled.View`
+
   justify-content: center;
+  align-items: center;
   width: 25px;
   height: 19px;
   border-radius:9px;
@@ -28,4 +29,11 @@ export const Quantity = styled.Text`
   color: ${({theme})=> theme.COLORS.GRAY_200};;
   font-family: ${({theme})=> theme.FONT_FAMILY.BOLD};
   font-size: ${({theme})=> theme.FONT_SIZE.SM}px;
+`
+
+export const Text = styled.Text `
+  color: ${({theme})=> theme.COLORS.GRAY_200};;
+  font-family: ${({theme})=> theme.FONT_FAMILY.BOLD};
+  font-size: ${({theme})=> theme.FONT_SIZE.SM}px;
+
 `
