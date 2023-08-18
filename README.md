@@ -10,9 +10,9 @@
 
 
 ## 🖥️ Telas Preview
-![image](https://github.com/rafaelcmarques/todo/assets/55025119/f1bd2808-7528-4a5a-8b0a-6ec36b3a5277)  
-![image](https://github.com/rafaelcmarques/todo/assets/55025119/5402825f-6eb2-4d9b-85e5-03c7ae8c864c)
-![image](https://github.com/rafaelcmarques/todo/assets/55025119/dc3bbdd9-46ff-4f68-b065-d1c8062cf2d0)
+![image](https://github.com/rafaelcmarques/todo/assets/55025119/f1bd2808-7528-4a5a-8b0a-6ec36b3a5277) 
+![image](https://github.com/rafaelcmarques/todo/assets/55025119/5402825f-6eb2-4d9b-85e5-03c7ae8c864c)  
+![image](https://github.com/rafaelcmarques/todo/assets/55025119/dc3bbdd9-46ff-4f68-b065-d1c8062cf2d0) 
 ![image](https://github.com/rafaelcmarques/todo/assets/55025119/c4b22dd7-0580-414c-a30a-a91e2e911d2f)
 
 ## ▶️ Instalação e execução localmente
