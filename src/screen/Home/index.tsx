@@ -10,17 +10,21 @@ import { taskGetAll } from "../../storage/task/tasksGetAll";
 import { TaskDTO } from "../../storage/task/TaskDTO";
 import { taskCreate } from "../../storage/task/taskCreate";
 import { AppError } from "../../utils/AppError";
+import { Counter } from "../../Components/Counter";
 
 
 export function Home(){
   const [taskTitle, setTaskTitle] = useState('')
   const [tasks, setTasks] = useState<TaskDTO[]>([])
+
+
   const {COLORS} = useTheme();
   
   async function  fetchTasks(){
     try {
       const data = await taskGetAll()
       setTasks(data)
+      console.log(tasks)
       
     } catch (error) {
       Alert.alert('Tarefas', 'Não foi possivel carregar as tarefas')
@@ -61,11 +65,16 @@ export function Home(){
         </Button>
       </Form>
 
+      <Form>
+      <Counter title="Criadas" type="PRIMARY" quantity={tasks.length}/>
+      <Counter title="Concluídas" type="SECONDERY" quantity={tasks.filter(task => task.isDone).length}/>
+      </Form>
+
       <FlatList 
         data={tasks}
         keyExtractor={(item)=> item.title}
         renderItem={({item})=> 
-         <Task title={item.title} onTaskDeleted={fetchTasks}/>
+         <Task title={item.title} fetchTasks={fetchTasks} isDone={item.isDone}/>
         }
         ListEmptyComponent={ 
           <EmptyList
